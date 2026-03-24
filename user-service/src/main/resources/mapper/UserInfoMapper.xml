@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.userservice.dao.UserInfoDao">
+    <insert id="insertUserInfo" parameterType="String">
+        insert into user_info(username, password) values (#{username}, #{password})
+    </insert>
+    <update id="updateUserInfo" parameterType="String">
+        update user_info set password = #{password} where username = #{username}
+    </update>
+    <delete id="deleteUserInfo" parameterType="String">
+        delete from user_info where username = #{username}
+    </delete>
+
+    <select id="queryUserInfo" parameterType="String"
+            resultType="com.example.userservice.dto.UserInfo">
+        select * from user_info where id = #{userId, jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryUserInfoList" resultType="com.example.user.api.dto.UserInfoResDTO">
+    select id, username, password from user_info
+</select>
+
+
+</mapper>
