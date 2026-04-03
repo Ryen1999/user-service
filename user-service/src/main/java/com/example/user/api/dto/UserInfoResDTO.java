@@ -1,21 +1,21 @@
 package com.example.user.api.dto;
 
+import com.example.domain.dto.BaseObject;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class UserInfoResDTO {
+public class UserInfoResDTO extends BaseObject {
 	
-	private String id;
-	private String wx_id;
-	private String wx_nickname;
+	private String wxId;
+	private String wxNickname;
 	private String roles;
-	private String avatar_url;
+	private String avatarUrl;
 	
 	
 	private Date createTime;
 	private Date updateTime;
-	private String bonus;
+	private Integer bonus;
 	
 }

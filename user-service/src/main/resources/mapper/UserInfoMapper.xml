@@ -4,14 +4,34 @@
     <insert id="insertUserInfo" parameterType="String">
         insert into user_info(username, password) values (#{username}, #{password})
     </insert>
-    <update id="updateUserInfo" parameterType="String">
-        update user_info set password = #{password} where username = #{username}
+
+    <update id="updateUserInfo" parameterType="com.example.userservice.dto.UserInfo">
+        update user_info
+        <set>
+            <if test="roles != null">
+                roles = #{roles},
+            </if>
+            <if test="avatarUrl != null">
+                avatar_url = #{avatarUrl},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="bonus != null">
+                bonus = #{bonus},
+            </if>
+        </set>
+        where id = #{id}
     </update>
+
     <delete id="deleteUserInfo" parameterType="String">
         delete from user_info where username = #{username}
     </delete>
 
-    <select id="queryUserInfo" parameterType="String"
+    <select id="queryUserInfoByUserId" parameterType="String"
             resultType="com.example.userservice.dto.UserInfo">
         select * from user_info where id = #{userId, jdbcType=VARCHAR}
     </select>

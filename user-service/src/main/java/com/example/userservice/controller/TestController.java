@@ -26,10 +26,10 @@ public class TestController {
 	 * @return
 	 */
 	@RequestMapping("/queryUserInfoById")
-	public List<UserInfo> queryUserInfoById(@RequestParam String id) {
+	public UserInfo queryUserInfoById(@RequestParam String id) {
 		log.info("queryUserInfoById:{}", id);
-		List<UserInfo> users = userInfoDao.queryUserInfo(id);
-		return users;
+		UserInfo user = userInfoDao.queryUserInfoByUserId(id);
+		return user;
 	}
 	
 

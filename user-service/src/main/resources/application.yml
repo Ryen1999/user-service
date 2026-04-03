@@ -6,16 +6,40 @@ spring:
     name: user-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.122.87.219:3306/user_center?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://124.223.32.169:3306/user_center?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: root
+    password: 15151112063Gw
+    # HikariCP 连接池配置
+    hikari:
+      minimum-idle: 5              # 最小空闲连接数
+      maximum-pool-size: 20        # 最大连接池大小
+      idle-timeout: 600000         # 空闲连接超时时间 (10 分钟)
+      connection-timeout: 30000    # 连接超时时间 (30 秒)
+      max-lifetime: 1800000        # 连接最大生命周期 (30 分钟)
+      connection-test-query: SELECT 1  # 连接测试查询
   cloud:
     nacos:
       discovery:
         ip: 47.122.87.219
         server-addr: 47.122.87.219:8848
+#    stream:
+#      rocketmq:
+#        binder:
+#          name-server: 124.223.32.169:9876
+#      bindings:
+#        add-bonus-input:
+#          destination: add-bonus-topic   # 对应 RocketMQ 的 topic
+#          #group随便写
+#          group: content-service-producer
+
 
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.userservice.dto
+
+# RocketMQ 配置
+rocketmq:
+  #RocketMQ NameServer 地址
+  name-server: 124.223.32.169:9876
+

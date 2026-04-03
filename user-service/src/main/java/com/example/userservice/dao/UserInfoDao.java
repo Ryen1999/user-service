@@ -11,11 +11,11 @@ public interface UserInfoDao {
 	
 	int insertUserInfo(String username, String password);
 	
-	int updateUserInfo(String username, String password);
+	int updateUserInfo(UserInfo user);
 	
 	int deleteUserInfo(String username);
 	
 	List<UserInfoResDTO> queryUserInfoList();
 	
-	List<UserInfo> queryUserInfo(String userId);
+	UserInfo queryUserInfoByUserId(String userId);
 }
