@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface UserInfoDao {
 	
-	int insertUserInfo(String username, String password);
+	int insertUserInfo(UserInfo  userInfo);
 	
 	int updateUserInfo(UserInfo user);
 	
@@ -17,5 +17,5 @@ public interface UserInfoDao {
 	
 	List<UserInfoResDTO> queryUserInfoList();
 	
-	UserInfo queryUserInfoByUserId(String userId);
+	UserInfo queryUserInfoByWxId(String wxId);
 }

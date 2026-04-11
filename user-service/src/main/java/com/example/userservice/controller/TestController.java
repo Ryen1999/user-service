@@ -1,11 +1,10 @@
 package com.example.userservice.controller;
 
-import com.example.user.api.dto.UserInfoResDTO;
+import com.example.userservice.aop.annotation.RequireLogin;
 import com.example.userservice.dao.UserInfoDao;
 import com.example.userservice.dto.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,9 +25,10 @@ public class TestController {
 	 * @return
 	 */
 	@RequestMapping("/queryUserInfoById")
+	@RequireLogin
 	public UserInfo queryUserInfoById(@RequestParam String id) {
 		log.info("queryUserInfoById:{}", id);
-		UserInfo user = userInfoDao.queryUserInfoByUserId(id);
+		UserInfo user = userInfoDao.queryUserInfoByWxId(id);
 		return user;
 	}
 	

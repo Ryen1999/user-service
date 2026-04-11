@@ -38,7 +38,7 @@ public class AddBonusService {
             );
 
             // 第二步：执行业务
-            UserInfo user = userInfoDao.queryUserInfoByUserId(String.valueOf(userId));
+            UserInfo user = userInfoDao.queryUserInfoByWxId(String.valueOf(userId));
             if (user == null) {
                 throw new RuntimeException("用户不存在：" + userId);
             }

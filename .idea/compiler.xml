@@ -7,14 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="user-service" />
+        <module name="stock-service" />
         <module name="user-service-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="stock-service" target="1.8" />
       <module name="user-service" target="1.8" />
-      <module name="user-service-api" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

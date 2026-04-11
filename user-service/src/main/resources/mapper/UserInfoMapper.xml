@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.userservice.dao.UserInfoDao">
-    <insert id="insertUserInfo" parameterType="String">
-        insert into user_info(username, password) values (#{username}, #{password})
+
+    <insert id="insertUserInfo" parameterType="com.example.userservice.dto.UserInfo">
+        insert into user_info (id,  wx_id, wx_nickname, roles, avatar_url, create_time, update_time, bonus)
+        values (#{id},  #{wxId}, #{wxNickname}, #{roles}, #{avatarUrl}, #{createTime}, #{updateTime}, #{bonus})
     </insert>
 
     <update id="updateUserInfo" parameterType="com.example.userservice.dto.UserInfo">
@@ -31,13 +33,13 @@
         delete from user_info where username = #{username}
     </delete>
 
-    <select id="queryUserInfoByUserId" parameterType="String"
+    <select id="queryUserInfoByWxId" parameterType="String"
             resultType="com.example.userservice.dto.UserInfo">
-        select * from user_info where id = #{userId, jdbcType=VARCHAR}
+        select * from user_info where wx_id = #{wxId, jdbcType=VARCHAR}
     </select>
 
     <select id="queryUserInfoList" resultType="com.example.user.api.dto.UserInfoResDTO">
-    select id, username, password from user_info
+    select id, wx_id as wxId, wx_nickname as wxNickname, roles, avatar_url as avatarUrl, create_time as createTime, update_time as updateTime, bonus from user_info
 </select>
 
 

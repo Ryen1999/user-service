@@ -8,14 +8,14 @@ import java.util.Date;
 public class UserInfoResDTO {
 	
 	private String id;
-	private String wx_id;
-	private String wx_nickname;
+	private String wxId;
+	private String wxNickname;
 	private String roles;
-	private String avatar_url;
+	private String avatarUrl;
 	
 	
 	private Date createTime;
 	private Date updateTime;
-	private String bonus;
+	private Integer bonus;
 	
 }
