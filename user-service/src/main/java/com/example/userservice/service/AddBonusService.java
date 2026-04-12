@@ -1,6 +1,6 @@
 package com.example.userservice.service;
 
-import com.example.domain.dto.content.BonusEventLog;
+import com.example.userservice.domain.model.BonusEventLog;
 import com.example.userservice.dao.BonusEventLogDao;
 import com.example.userservice.dao.UserInfoDao;
 import com.example.userservice.dto.UserInfo;

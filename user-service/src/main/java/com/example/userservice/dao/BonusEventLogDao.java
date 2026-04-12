@@ -1,6 +1,6 @@
 package com.example.userservice.dao;
 
-import com.example.domain.dto.content.BonusEventLog;
+import com.example.userservice.domain.model.BonusEventLog;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

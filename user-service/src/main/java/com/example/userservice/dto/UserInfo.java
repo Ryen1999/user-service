@@ -1,6 +1,6 @@
 package com.example.userservice.dto;
 
-import com.example.domain.dto.BaseObject;
+import com.example.userservice.common.model.BaseObject;
 import lombok.Data;
 
 import java.util.Date;

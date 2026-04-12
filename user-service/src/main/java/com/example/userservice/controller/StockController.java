@@ -4,6 +4,7 @@ import com.example.user.api.StockApi;
 import com.example.user.api.dto.StockDeductRequest;
 import com.example.user.api.dto.StockResponse;
 import com.example.user.api.dto.UserInfoResDTO;
+import com.example.userservice.aop.annotation.RequireLogin;
 import com.example.userservice.dao.UserInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @return
  **/
 @RestController
+@RequireLogin
 public class StockController implements StockApi {
 	
 	private final Map<String, Integer> stockMap = new ConcurrentHashMap<>();

@@ -3,15 +3,15 @@ package com.example.userservice.controller;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
-import com.example.domain.dto.user.JwtTokenRespDTO;
-import com.example.domain.dto.user.LoginRespDTO;
-import com.example.domain.dto.user.UserLoginDTO;
-import com.example.domain.dto.user.UserRespDTO;
 import com.example.userservice.aop.annotation.RequireLogin;
 import com.example.userservice.dao.UserInfoDao;
 import com.example.userservice.dto.UserInfo;
+import com.example.userservice.interfaces.dto.user.JwtTokenRespDTO;
+import com.example.userservice.interfaces.dto.user.LoginRespDTO;
+import com.example.userservice.interfaces.dto.user.UserLoginDTO;
+import com.example.userservice.interfaces.dto.user.UserRespDTO;
+import com.example.userservice.security.jwt.JwtOperator;
 import com.example.userservice.service.UserService;
-import com.example.util.JwtOperator;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import java.util.Map;
  **/
 @Slf4j
 @RestController
-@RequestMapping("users")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -58,12 +58,14 @@ public class UserController {
 
         String openid =result.getOpenid();
 
+        log.info("openid:{}",openid);
+
         //看用户是否在注册，如果没有注册就插入
         UserInfo userInfo = userService.login(userLoginDTO,openid);
 
         //颁发token
         Map<String,Object> claims =new HashMap<>(3);
-        claims.put("wxid",userInfo.getId());
+        claims.put("id",userInfo.getId());
         claims.put("wxNickName",userInfo.getWxNickname());
         claims.put("role",userInfo.getRoles());
 
@@ -71,7 +73,7 @@ public class UserController {
         log.info("用户:{}登录成功，生成的token：{},有效期到:{}",userInfo.getWxNickname(),token,jwtOperator.getExpirationDateFromToken(token));
         LoginRespDTO loginRespDTO = LoginRespDTO.builder().token(JwtTokenRespDTO.builder()
                 .token(token)
-                .expire(jwtOperator.getExpirationDateFromToken(token).getTime())
+                .expirationTime(jwtOperator.getExpirationDateFromToken(token).getTime())
                 .build())
                 .user(UserRespDTO.builder()
                         .id(userInfo.getId())

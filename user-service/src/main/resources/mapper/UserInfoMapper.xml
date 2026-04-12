@@ -35,7 +35,8 @@
 
     <select id="queryUserInfoByWxId" parameterType="String"
             resultType="com.example.userservice.dto.UserInfo">
-        select * from user_info where wx_id = #{wxId, jdbcType=VARCHAR}
+select id, wx_id as wxId, wx_nickname as wxNickname, roles, avatar_url as avatarUrl, create_time as createTime, update_time as updateTime, bonus from user_info where wx_id = #{wxId}
+
     </select>
 
     <select id="queryUserInfoList" resultType="com.example.user.api.dto.UserInfoResDTO">

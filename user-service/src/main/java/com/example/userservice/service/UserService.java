@@ -1,6 +1,6 @@
 package com.example.userservice.service;
 
-import com.example.domain.dto.user.UserLoginDTO;
+import com.example.userservice.interfaces.dto.user.UserLoginDTO;
 import com.example.userservice.dao.UserInfoDao;
 import com.example.userservice.dto.UserInfo;
 import lombok.extern.slf4j.Slf4j;

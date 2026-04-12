@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/test")
+@RequireLogin
 public class TestController {
 	
 	@Autowired
@@ -25,7 +26,6 @@ public class TestController {
 	 * @return
 	 */
 	@RequestMapping("/queryUserInfoById")
-	@RequireLogin
 	public UserInfo queryUserInfoById(@RequestParam String id) {
 		log.info("queryUserInfoById:{}", id);
 		UserInfo user = userInfoDao.queryUserInfoByWxId(id);

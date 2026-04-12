@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        ip: 47.122.87.219
+        server-addr: 47.122.87.219:8848
+        namespace: ${nacos.namespace}
+        group: DEFAULT_GROUP
+        cluster-name: NJ
+      config:
+        server-addr: 47.122.87.219:8848
+        namespace: ${nacos.namespace}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        shared-configs:
+          - data-id: jwt-shared.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: wx-miniapp-shared.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.userservice.dto
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+nacos:
+  namespace: 7e1f4523-af8b-48ab-9ec2-368a30db92ee
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+nacos:
+  namespace: 5af435cf-6115-4211-b4b7-f12eee58e052
